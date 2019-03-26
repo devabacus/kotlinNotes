@@ -7,7 +7,6 @@ data class Task(
 ){
 }
 
-
 data class Todo(
     var description: String,
     var isComplete: Boolean
