@@ -1,4 +1,4 @@
-package com.example.kotlinnotes
+package com.example.kotlinnotes.models
 
 data class Task(
     var title: String,
