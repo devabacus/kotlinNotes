@@ -25,9 +25,13 @@ class NotesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val set = arrayOf<String>("stas","ivan","oleg","blabla","blablaagain")
         notes_rec_view.layoutManager = LinearLayoutManager(context)
-        val adapter = NotesAdapter(set)
+        val adapter = NotesAdapter(
+            mutableListOf(
+                Note("note1"),
+                Note("note2")
+            )
+        )
         notes_rec_view.adapter = adapter
     }
 }
