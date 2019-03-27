@@ -2,14 +2,14 @@ package com.example.kotlinnotes.models
 
 data class Task(
     var title: String,
-    val todo: List<Todo>? = mutableListOf(),
+    val todo: List<Todo> = mutableListOf(),
     var tag: Tag? = null
 ){
 }
 
 data class Todo(
     var description: String,
-    var isComplete: Boolean
+    var isComplete: Boolean = false
 )
 
 data class Note(
