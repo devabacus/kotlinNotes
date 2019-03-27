@@ -5,36 +5,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinnotes.R
+import com.example.kotlinnotes.foundations.BaseRecyclerAdapter
 import com.example.kotlinnotes.models.Task
 import kotlinx.android.synthetic.main.item_task.view.*
 
 class TaskAdapter(
-    private val taskList: MutableList<Task> = mutableListOf()
-):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    taskList: MutableList<Task> = mutableListOf()
+):BaseRecyclerAdapter<Task>(taskList) {
 
-    class MyViewHolder(val view: View):RecyclerView.ViewHolder(view){
-        fun onBind(task:Task) {
-            view.tv_task_item.text = task.title
+    class MyViewHolder(view: View):BaseViewHolder<Task>(view){
+        override fun onBind(data: Task) {
+            view.tv_task_item.text = data.title
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        MyViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_task,
-                parent,
-                false
-            )
-        )
-
-    override fun getItemCount(): Int = taskList.size
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as MyViewHolder).onBind(taskList[position])
-    }
-
-
-
-
+        MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_task,parent,false))
 
 }

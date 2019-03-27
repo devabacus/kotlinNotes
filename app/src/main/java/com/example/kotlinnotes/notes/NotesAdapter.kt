@@ -6,26 +6,23 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinnotes.R
+import com.example.kotlinnotes.foundations.BaseRecyclerAdapter
 import com.example.kotlinnotes.models.Note
 import kotlinx.android.synthetic.main.item_note.view.*
 
-class NotesAdapter (
-    private val noteList: MutableList<Note> = mutableListOf())
-    : RecyclerView.Adapter<RecyclerView.ViewHolder> (){
+class NotesAdapter(
+    noteList: MutableList<Note> = mutableListOf()
+): BaseRecyclerAdapter<Note>(noteList) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false))
+        MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_note,parent,false))
 
-    override fun getItemCount() = noteList.size
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as MyViewHolder).onBind(noteList[position])
-    }
-
-    class MyViewHolder (val view: View): RecyclerView.ViewHolder(view){
-        fun onBind(note: Note) {
-            view.tv_note_item.text = note.description
+    class MyViewHolder(view: View):BaseViewHolder<Note>(view){
+        override fun onBind(data: Note) {
+            view.tv_note_item.text = data.description
         }
     }
+
 
 }
