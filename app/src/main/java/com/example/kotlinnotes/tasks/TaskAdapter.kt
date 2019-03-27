@@ -18,7 +18,7 @@ class TaskAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         MyViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.item_task,
