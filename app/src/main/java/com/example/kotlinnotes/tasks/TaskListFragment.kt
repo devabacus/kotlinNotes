@@ -6,8 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.kotlinnotes.R
+import com.example.kotlinnotes.TaskAdapter
+import com.example.kotlinnotes.models.Task
+import kotlinx.android.synthetic.main.fragment_task_list.*
 
 class TaskListFragment : Fragment() {
 
@@ -26,4 +30,15 @@ class TaskListFragment : Fragment() {
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recycler_view.layoutManager = LinearLayoutManager(context)
+        val adapter = TaskAdapter(mutableListOf(
+            Task("one task"),
+            Task("second task")
+        ))
+        recycler_view.adapter = adapter
+
+    }
 }
