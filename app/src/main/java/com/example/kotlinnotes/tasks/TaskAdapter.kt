@@ -19,9 +19,10 @@ class TaskAdapter(
             view.tv_task_item.text = data.title
 
             data.todo.forEach { todo->
-                val todoView = LayoutInflater.from(view.context).inflate(R.layout.view_todo, view.todo_container, false)
-                todoView.tv_description.text = todo.description
-                todoView.cb_complete.isChecked = todo.isComplete
+                val todoView = LayoutInflater.from(view.context).inflate(R.layout.view_todo, view.todo_container, false).apply {
+                    tv_description.text = todo.description
+                    cb_complete.isChecked = todo.isComplete
+                }
                 view.todo_container.addView(todoView)
 
             }
