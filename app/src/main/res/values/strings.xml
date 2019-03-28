@@ -3,4 +3,7 @@
     <string name="title_tasks">Tasks</string>
     <string name="title_notes">Notes</string>
 
+    <string name="add_button_task">Add new task</string>
+    <string name="add_button_note">Add new note</string>
+
 </resources>
