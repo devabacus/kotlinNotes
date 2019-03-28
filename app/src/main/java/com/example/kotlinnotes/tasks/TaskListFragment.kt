@@ -1,5 +1,6 @@
 package com.example.kotlinnotes.tasks
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,17 @@ import com.example.kotlinnotes.models.Todo
 import kotlinx.android.synthetic.main.fragment_task_list.*
 
 class TaskListFragment : Fragment() {
+
+    lateinit var touchActionDelegate: TouchActionDelegate
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        context?.let {
+            if (it is TouchActionDelegate) {
+                touchActionDelegate = it
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,9 +51,15 @@ class TaskListFragment : Fragment() {
                         Todo("todo_two", true)
                     )),
             Task("second task")
-        )
+        ),touchActionDelegate
         )
         recycler_view.adapter = adapter
 
     }
+
+    interface TouchActionDelegate{
+        fun onAddButtonClicker()
+    }
+
+
 }
