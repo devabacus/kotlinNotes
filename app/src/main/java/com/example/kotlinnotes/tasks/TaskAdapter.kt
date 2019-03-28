@@ -1,5 +1,6 @@
 package com.example.kotlinnotes.tasks
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,17 @@ class TaskAdapter(
                 val todoView = LayoutInflater.from(view.context).inflate(R.layout.view_todo, view.todo_container, false).apply {
                     tv_description.text = todo.description
                     cb_complete.isChecked = todo.isComplete
+                    if (todo.isComplete) {
+                        tv_description.paintFlags = tv_description.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    }
+                    cb_complete.setOnCheckedChangeListener{buttonView, isChecked ->
+                        if (isChecked) {
+                            tv_description.paintFlags = tv_description.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                        } else {
+                            tv_description.paintFlags = tv_description.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                        }
+                    }
+
                 }
                 view.todo_container.addView(todoView)
 
