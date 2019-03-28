@@ -1,6 +1,5 @@
 package com.example.kotlinnotes.tasks
 
-import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,27 +9,29 @@ import com.example.kotlinnotes.foundations.BaseRecyclerAdapter
 import com.example.kotlinnotes.models.Task
 import com.example.kotlinnotes.views.TodoView
 import kotlinx.android.synthetic.main.item_task.view.*
-import kotlinx.android.synthetic.main.view_todo.view.*
 
 class TaskAdapter(
     taskList: MutableList<Task> = mutableListOf()
-):BaseRecyclerAdapter<Task>(taskList) {
+) : BaseRecyclerAdapter<Task>(taskList) {
 
-    class MyViewHolder(view: View):BaseViewHolder<Task>(view){
+    class MyViewHolder(view: View) : BaseViewHolder<Task>(view) {
         override fun onBind(data: Task) {
             view.tv_task_item.text = data.title
 
-            data.todo.forEach { todo->
-                val todoView = (LayoutInflater.from(view.context).inflate(R.layout.view_todo, view.todo_container, false) as TodoView).apply {
+            data.todo.forEach { todo ->
+                val todoView = (LayoutInflater.from(view.context).inflate(
+                    R.layout.view_todo,
+                    view.todo_container,
+                    false
+                ) as TodoView).apply {
                     initView(todo)
                 }
                 view.todo_container.addView(todoView)
-
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_task,parent,false))
+        MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false))
 
 }

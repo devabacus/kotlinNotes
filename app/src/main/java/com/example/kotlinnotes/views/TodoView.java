@@ -39,7 +39,7 @@ public class TodoView extends ConstraintLayout {
     }
 
     public void setUpCheckStateListener() {
-        cbComplete.setOnCheckedChangeListener((button, isChecked) ->{
+        cbComplete.setOnCheckedChangeListener((button, isChecked) -> {
             if (isChecked) {
                 createStrikeThrough();
             } else {
@@ -49,7 +49,7 @@ public class TodoView extends ConstraintLayout {
     }
 
     private void createStrikeThrough() {
-        tvDescription.setPaintFlags(tvDescription.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+        tvDescription.setPaintFlags(tvDescription.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
     private void removeStrikeThrough() {
