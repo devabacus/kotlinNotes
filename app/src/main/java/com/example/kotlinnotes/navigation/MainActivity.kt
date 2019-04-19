@@ -2,13 +2,13 @@ package com.example.kotlinnotes.navigation
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.kotlinnotes.R
 import com.example.kotlinnotes.create.CreateActivity
 import com.example.kotlinnotes.notes.NotesListFragment
 import com.example.kotlinnotes.tasks.TaskListFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), TaskListFragment.TouchActionDelegate {
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), TaskListFragment.TouchActionDelegate {
         startActivity(Intent(this, CreateActivity::class.java))
     }
 
-    private fun replaceFragment(fragment: Fragment){
+    private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_holder, fragment)
             .commit()

@@ -4,7 +4,7 @@ data class Task(
     var title: String,
     val todo: List<Todo> = mutableListOf(),
     var tag: Tag? = null
-){
+) {
 }
 
 data class Todo(

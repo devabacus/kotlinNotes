@@ -2,11 +2,16 @@ package com.example.kotlinnotes.foundations
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlinnotes.tasks.TaskAdapter
 
-abstract class BaseRecyclerAdapter<T> (
+abstract class BaseRecyclerAdapter<T>(
     protected val masterList: MutableList<T> = mutableListOf()
-): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    fun updateList(list: List<T>) {
+        masterList.clear()
+        masterList.addAll(list)
+        notifyDataSetChanged()
+    }
 
     override fun getItemViewType(position: Int): Int =
         if (position == 0) {
@@ -19,15 +24,14 @@ abstract class BaseRecyclerAdapter<T> (
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is AddButtonViewHolder) {
-            holder.onBind(Unit)
+            holder.onBind(Unit, position - 1)
         } else {
-            (holder as BaseViewHolder<T>).onBind(masterList[position-1])
+            (holder as BaseViewHolder<T>).onBind(masterList[position - 1], position - 1)
         }
-
     }
 
     abstract class BaseViewHolder<E>(val view: View) : RecyclerView.ViewHolder(view) {
-        abstract fun onBind(data: E)
+        abstract fun onBind(data: E, listIndex: Int)
     }
 
     abstract class AddButtonViewHolder(view: View) : BaseViewHolder<Unit>(view)
