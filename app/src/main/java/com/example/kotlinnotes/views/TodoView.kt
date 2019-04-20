@@ -17,7 +17,7 @@ class TodoView @JvmOverloads constructor(
         tv_description.text = todo.description
         cb_complete.isChecked = todo.isComplete
         if (todo.isComplete) {
-            createStrikeThrough()
+            tv_description.setStrikeThrough()
         }
         setUpCheckStateListener(todo, callback)
     }
@@ -27,22 +27,10 @@ class TodoView @JvmOverloads constructor(
             todo.isComplete = isChecked
             callback?.invoke(isChecked)
             if (isChecked) {
-                createStrikeThrough()
+                tv_description.setStrikeThrough()
             } else {
-                removeStrikeThrough()
+                tv_description.removeStrikeThrough()
             }
-        }
-    }
-
-    private fun createStrikeThrough() {
-        tv_description.apply {
-            paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-        }
-    }
-
-    private fun removeStrikeThrough() {
-        tv_description.apply {
-            paintFlags = paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
         }
     }
 }

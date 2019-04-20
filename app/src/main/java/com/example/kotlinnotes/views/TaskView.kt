@@ -1,7 +1,6 @@
 package com.example.kotlinnotes.views
 
 import android.content.Context
-import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -24,34 +23,16 @@ class TaskView @JvmOverloads constructor(
             val todoView =
                 (LayoutInflater.from(context).inflate(R.layout.view_todo, todo_container, false) as TodoView).apply {
                     initView(todo) { isChecked ->
-
-
                         todoCheckedCallBack.invoke(todoIndex, isChecked)
-
                         if (isTaskComplete()) {
-                            createStrikeThrough()
+                            this@TaskView.tv_task_item.setStrikeThrough()
                         } else {
-                            removeStrikeThrough()
+                            this@TaskView.tv_task_item.removeStrikeThrough()
                         }
                     }
                 }
             todo_container.addView(todoView)
         }
     }
-
     fun isTaskComplete(): Boolean = task.todo.filter { !it.isComplete }.isEmpty()
-
-    private fun createStrikeThrough() {
-        tv_task_item.apply {
-            paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-        }
-    }
-
-    private fun removeStrikeThrough() {
-        tv_task_item.apply {
-            paintFlags = paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-        }
-    }
-
-
 }
